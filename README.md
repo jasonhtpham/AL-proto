@@ -1,9 +1,9 @@
 # AL-proto
 
-#Run this app:
+# Run this app:
+1. npm install
 
-##1. npm install
-##2. npm start
+2. npm start
 
-#Debug:
-## npm debug
+# Debug:
+npm debug
