@@ -26,4 +26,15 @@ $(document).ready(function() {
             $('#result').html(dataString)
         })
     })
+
+    // Test button
+    $('#testBtn').click(function() {
+        $.get("/test", function(data) {
+            // format the JSON data sent from server
+            let dataString = JSON.stringify(data);
+
+            // console.log(`Data:  ${dataString}`);
+            $('#result').html(dataString)
+        })
+    })
 })
