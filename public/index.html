@@ -31,20 +31,26 @@
         <div class="container">
             <div class="row">
                 <div class="input-field col s6">
-                  <input id="id" type="number" class="validate">
-                  <label class="active" for="id">Student ID</label>
+                  <input id="unitCode" type="text" class="validate">
+                  <label class="active" for="unitCode">Unit Code</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="firstname" type="text" class="validate">
-                    <label class="active" for="firstname">First Name</label>
+                    <input id="unitName" type="text" class="validate">
+                    <label class="active" for="unitName">Unit Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                  <input id="lastname" type="text" class="validate">
-                  <label class="active" for="lastname">Last Name</label>
+                  <input id="numberGrade" type="number" class="validate">
+                  <label class="active" for="numberGrade">Number Grade</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                  <input id="letterGrade" type="text" class="validate">
+                  <label class="active" for="letterGrade">Letter Grade</label>
                 </div>
             </div>
 
@@ -68,7 +74,23 @@
             <p id="result"></p>
         </div>
 
-        
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="input-field col s6">
+                  <input id="unitCodeSearch" type="text" class="validate">
+                  <label class="active" for="unitCodeSearch">Unit Code</label>
+                </div>
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit" id="searchBtn">Search
+                <i class="material-icons right">search</i>
+            </button>
+        </div>
+
+        <div class="container-result">
+            <p id="searchResult"></p>
+        </div>
 
     </body>
 </html>

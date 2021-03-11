@@ -3,15 +3,17 @@ $(document).ready(function() {
 
     //bind submit button
     $('#submitBtn').click(function() {
-        var id = $('#id').val()
-        var firstName = $('#firstname').val()
-        var lastName = $('#lastname').val()
+        var unitCode = $('#unitCode').val()
+        var unitName = $('#unitName').val()
+        var numberGrade = $('#numberGrade').val()
+        var letterGrade = $('#letterGrade').val()
 
         // pack the information to be sent in one packet
         info = {
-            id,
-            firstName,
-            lastName
+            unitCode,
+            unitName,
+            numberGrade,
+            letterGrade,
         }
 
         // return result
@@ -19,22 +21,31 @@ $(document).ready(function() {
         // including `info` as query information
         // if server send something back, past it into the function as `data`
         $.get("/result", info, function(data) {
-            // format the JSON data sent from server
-            let dataString = JSON.stringify(data);
-
-            // console.log(`Data:  ${dataString}`);
-            $('#result').html(dataString)
+            alert(data);
         })
     })
 
     // Test button
     $('#testBtn').click(function() {
         $.get("/test", function(data) {
-            // format the JSON data sent from server
-            let dataString = JSON.stringify(data);
 
-            // console.log(`Data:  ${dataString}`);
-            $('#result').html(dataString)
+            console.log({data})
+            $('#result').html(data)
+        })
+    })
+
+    // Search button
+    $('#searchBtn').click(function() {
+        var unitCode = $('#unitCodeSearch').val()
+
+        // pack the information to be sent in one packet
+        info = {
+            unitCode,
+        }
+
+        $.get("/search", info, function(data) {
+            console.log({data})
+            $('#searchResult').html(data)
         })
     })
 })

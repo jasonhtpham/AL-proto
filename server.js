@@ -81,16 +81,27 @@ class LinkedList {
     }
 
     //search node by id
-    search(id) {
+    search(unitCodeToSearch) {
         let currentNode = this.head;
 
         while (currentNode) {
-            if(currentNode.data.id == id) {
+            if(currentNode.data.unitCode === unitCodeToSearch) {
                 return currentNode.data;
             }
             currentNode = currentNode.next
         }
         return null;
+    }
+
+    getList() {
+        let currentNode = this.head;
+        let value = [];
+
+        while (currentNode) {
+            value.push(currentNode.data);
+            currentNode = currentNode.next;
+        }
+        return value;
     }
 }
 
@@ -115,30 +126,48 @@ let progress = [
 let studentA = new LinkedList();
 
 // Each node in the linked list store a progress object detailing student's progress
-studentA.append(progress[0]);
-studentA.append(progress[1]);
+// studentA.append(progress[0]);
+// studentA.append(progress[1]);
 
 // serve static files
 app.use(express.static(__dirname + '/public'));
 
 app.get('/result', (req,res) => {
-    let firstName = req.query.firstName;
-    let lastName = req.query.lastName;
-    let id = req.query.id;
+    let unitCode = req.query.unitCode;
+    let unitName = req.query.unitName;
+    let numberGrade = req.query.numberGrade;
+    let letterGrade = req.query.letterGrade;
 
-    let result = {
-        StudentID: id,
-        FirstName: firstName,
-        LastName: lastName
+    let achivement = {
+        timeStamp: Math.floor( Date.now() / 1000 ),
+        unitCode,
+        unitName,
+        numberGrade,
+        letterGrade,
     }
 
-    res.json(result);
+    studentA.append(achivement)
+
+    res.send(`${achivement.unitCode} has been added`);
 })
 
 app.get('/test', (req,res) => {
-    let latest = studentA.latest();
+    // let latest = studentA.latest();
+    let studentAList = studentA.getList();
+    let dataToSend = JSON.stringify(studentAList);
+    // dataToSend = JSON.stringify(dataToSend);
 
-    res.json(latest);
+    // res.json(latest);
+    res.send(dataToSend);
+})
+
+app.get('/search', (req,res) => {
+    let unitCode = req.query.unitCode;
+
+    let result = studentA.search(unitCode);
+    let dataToSend = JSON.stringify(result);
+
+    res.send(dataToSend);
 })
 
 app.listen(PORT, () => {
